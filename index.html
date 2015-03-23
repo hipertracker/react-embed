@@ -19,7 +19,7 @@
 </div>
 
 <div>
-    <iframe src="/static_files/v2/dev.html"
+    <iframe src="/static_files/v2/react.html"
             frameborder="0"
             height="280"
             width="400"
@@ -27,7 +27,7 @@
 </div>
 </body>
 <script>
-    window.ReactBridge.subscribe('react-diamond', function (data) {
+    window.Amplify.subscribe('react-diamond', function (data) {
         $('#ReactBridgeMonitor').text('').show();
         $('#ReactBridgeMonitor').html(data).fadeOut({duration: 2000}, function () {
         })

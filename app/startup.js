@@ -1,4 +1,4 @@
 import React from 'react'
-import App from 'es6!./components/App'
+import App from 'es6!./components/Messanger'
 
 React.render(React.createElement(App), document.getElementById('App'));
