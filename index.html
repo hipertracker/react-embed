@@ -4,32 +4,47 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static_files/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/static_files/v2/index.css"/>
     <script src="/static_files/js/jquery-1.7.2.min.js"></script>
     <script src="/static_files/js/lib/amplify.min.js"></script>
     <script src="/static_files/js/react-bridge.js"></script>
+    <link href="/static_files/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-left: 20px;
+        }
+    </style>
 </head>
 <body>
-
 <h1>React Example</h1>
 
-<div style="height: 30px">
-    <span style="font-size:18px;color:red" id="ReactBridgeMonitor"></span>
+<div class="row">
+    <div class="span2">
+        <span class="alert alert-success" id="monitor" style="display: none"></span>
+    </div>
+    <div class="span3">
+        <iframe src="/static_files/v2/apps/messenger/index.html"
+                style="border: 1px dotted silver"
+                frameborder="0"
+                height="200"
+                width="240"
+                ></iframe>
+    </div>
+    <div class="span2">
+        <iframe src="/static_files/v2/apps/helloworld/index.html"
+                style="border: 1px dotted silver;"
+                frameborder="0"
+                height="120"
+                width="180"></iframe>
+    </div>
 </div>
 
 <div>
-    <iframe src="/static_files/v2/react.html"
-            frameborder="0"
-            height="280"
-            width="400"
-            ></iframe>
 </div>
 </body>
 <script>
     window.Amplify.subscribe('react-diamond', function (data) {
-        $('#ReactBridgeMonitor').text('').show();
-        $('#ReactBridgeMonitor').html(data).fadeOut({duration: 2000}, function () {
+        $('#monitor').text('').show();
+        $('#monitor').html(data).fadeOut({duration: 2000}, function () {
         })
     });
 </script>

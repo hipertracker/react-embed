@@ -1,11 +1,11 @@
 import React from 'react'
-import Messanger from 'es6!./Messanger'
+import Messenger from 'es6!./Messenger'
 
 class App extends React.Component {
     render() {
         return (
             <section>
-                <Messanger title="Message:" description="Intercommunication example"/>
+                <Messenger title="Message:" description="Intercommunication example"/>
             </section>
         )
     }

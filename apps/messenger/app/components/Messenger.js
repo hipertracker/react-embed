@@ -24,13 +24,15 @@ const Messanger = React.createClass({
     },
     render() {
         const notification = this.state.sent ? <span className="alert">Message sent</span> : <span/>;
-        return (
-            <section>
+           return (
+               <section>
                 <form>
                     <fieldset>
                         <label>{this.props.title}</label>
                         <input type="text"
-                               placeholder="Type something..."
+                               style={{ width: 118}}
+                               maxLength={14}
+                               placeholder="Type sth..."
                                valueLink={this.linkState('message')}/>
                         <span className="help-block">{this.props.description}</span>
                         <button onClick={this.sendMessage}
