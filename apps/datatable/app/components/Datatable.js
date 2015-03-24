@@ -1,17 +1,17 @@
 import _ from 'lodash'
 import React from 'react'
 import Reflux from 'reflux'
+import Immutable from 'immutable'
 import 'classnames'
 
 import UI from 'react-bootstrap'
 
 const T = React.PropTypes;
 
-const Table = UI.Table;
+const {Table} = UI;
 
 import DataTableActions from 'es6!../actions/DataTableActions'
 import DataTableStore from 'es6!../stores/DataTableStore'
-
 
 const Th = React.createClass({
     getDefaultProps() {
@@ -29,40 +29,73 @@ const Th = React.createClass({
         );
         return (
             <th onClick={this.resort} style={{cursor:'pointer'}}>
-                {this.props.label}&nbsp;<i className={classes}></i>
+                {this.props.label} <i className={classes} style={{marginLeft:5}}></i>
             </th>
         );
     }
 });
 
-const THead = React.createClass({
-    getDefaultProps() {
-        return {resort: {}};
+const Filter = React.createClass({
+    mixins: [React.addons.LinkedStateMixin],
+    propTypes: {
+        api: T.string.isRequired
+    },
+    getInitialState() {
+        return {value: ''};
+    },
+    handleChange(event) {
+        this.setState({value: event.target.value});
+        DataTableActions.filter({api: this.props.api, value: event.target.value})
     },
     render() {
-        let columns = this.props.columns.map((item, key) => {
-            if (this.props.resort.label === item.label) {
-                return <Th order={this.props.resort.order} api={item.api} label={item.label} key={key}/>
+        return <input ref="filterInput" type="text" className="form-control input-sm"
+                      value={this.state.value}
+                      placeholder="filter..."
+                      onChange={this.handleChange}/>;
+    }
+});
+
+const THead = React.createClass({
+    propTypes: {
+        columns: T.array.isRequired,
+        sortedColumn: T.oneOfType([
+            T.object,
+            T.shape({
+                api: T.string.isRequired,
+                label: T.string.isRequired,
+                order: T.string
+            })])
+    },
+    render() {
+        const columns = this.props.columns.map((item, key) => {
+            if (this.props.sortedColumn.label === item.label) {
+                return <Th order={this.props.sortedColumn.order} api={item.api} label={item.label} key={key}/>
             } else {
                 return <Th label={item.label} api={item.api} key={key}/>
             }
         });
+        let filters = this.props.columns.map((item, key) => <th key={key}><Filter api={item.api}/></th>);
         return (
             <thead>
             <tr>{columns}</tr>
+            <tr>{filters}</tr>
             </thead>
         )
     }
 });
 
 const TBody = React.createClass({
+    propTypes: {
+        columns: T.array.isRequired,
+        rows: T.array.isRequired
+    },
     render() {
+        const names = _.pluck(this.props.columns, 'api');
         return (
             <tbody>
             {this.props.rows.map((row, key) =>
                     <tr key={key}>
-                        {this.props.columns.map((name, key2) =>
-                                <td key={key2}>{row[name]}</td>
+                        {names.map((name, key2) => <td key={key2}>{row[name]}</td>
                         )}
                     </tr>
             )}
@@ -71,48 +104,43 @@ const TBody = React.createClass({
     }
 });
 
-const TFooter = React.createClass({
-    render() {
-        return (
-            <tfooter>
-            </tfooter>
-        )
-    }
-});
-
 const Datatable = React.createClass({
-    mixins: [Reflux.listenTo(DataTableStore, 'storeChanged')],
-    storeChanged(data) {
-        if (_.has(data, 'loaded')) {
-            this.setState({header: data.loaded.head, data: data.loaded.body});
-        }
-        if (_.has(data, 'resort')) {
-            let rows = _.sortByOrder(this.state.data, [data.resort.api], [data.resort.order === 'asc']);
-            this.setState({
-                resort: data.resort,
-                data: rows
-            });
-
-        }
-    },
-    getInitialState() {
-        return {header: null, data: null}
-    },
-    componentDidMount() {
-        DataTableActions.loadData();
-    },
-    render() {
-        if (!this.state.header) return <span/>;
-        return (
-            <section>
+        mixins: [Reflux.listenTo(DataTableStore, 'storeChanged')],
+        getInitialState() {
+            return {columns: null, rows: null, sortedColumn: null}
+        },
+        componentWillMount() {
+            DataTableActions.loadData();
+        },
+        storeChanged(data) {
+            if (_.has(data, 'loaded')) {
+                let item = data.loaded;
+                this.setState({columns: item.columns, rows: item.rows});
+            }
+            if (_.has(data, 'sortedColumn')) {
+                let item = data.sortedColumn;
+                this.setState({
+                    sortedColumn: item,
+                    rows: _.sortByOrder(this.state.rows, [item.api], [item.order === 'asc'])
+                });
+            }
+            if (_.has(data, 'filtered')) {
+                let rows = data.filtered;
+                this.setState({rows: rows, sortedColumn: null});
+            }
+        },
+        render() {
+            if (!this.state.columns) return <span/>;
+            return (
                 <Table striped bordered condensed hover>
-                    <THead resort={this.state.resort} columns={this.state.header}/>
-                    <TBody columns={_.pluck(this.state.header, 'api')} rows={this.state.data}/>
-                    <TFooter/>
+                    <THead sortedColumn={this.state.sortedColumn || {}}
+                           columns={this.state.columns}/>
+                    <TBody columns={this.state.columns}
+                           rows={this.state.rows}/>
                 </Table>
-            </section>
-        );
-    }
-});
+            );
+        }
+    })
+    ;
 
 export default Datatable;
