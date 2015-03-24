@@ -1,6 +1,6 @@
 var require = {
     waitSeconds: 200,
-    baseUrl: '/static_files/v2/',
+    baseUrl: '../../',
     paths: {
         babel: 'vendor/requirejs_babel/babel-4.7.12.min',
         babel_polyfill: 'vendor/requirejs_babel/polyfill-4.7.12.min',
@@ -9,7 +9,10 @@ var require = {
         react: 'vendor/react/react-with-addons',
         reflux: 'vendor/reflux/dist/reflux.min',
         lodash: 'vendor/lodash/lodash.min',
-        app: '/static_files/v2/apps/datatable/app'
+        immutable: 'vendor/immutable/dist/immutable.min',
+        classnames: 'vendor/classnames/index',
+        'react-bootstrap': 'vendor/react-bootstrap/react-bootstrap.min',
+        app: './apps/datatable/app'
     },
     shim: {
         babel: {

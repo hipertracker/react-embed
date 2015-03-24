@@ -3,3 +3,4 @@
 /views/
 *.cmd
 /node_modules/
+/.idea/

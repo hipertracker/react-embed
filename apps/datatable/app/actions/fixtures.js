@@ -1,8 +1,8 @@
-import lodash from 'lodash'
+import _ from 'lodash'
 
-let dataLength = 10;
+let dataLength = 100;
 
-let data = {
+let fixtures = {
     head: [
         {api: 'id', label: 'Model Id'},
         {api: 'name', label: 'Name'},
@@ -10,7 +10,7 @@ let data = {
         {api: 'dynamics', label: 'Dynamics'},
         {api: 'description', label: 'Description'},
     ],
-    body: lodash.range(dataLength).map(function () {
+    body: _.range(dataLength).map(function () {
         let i = Math.round(Math.random(1000) * 1000);
         return {
             id: i,
@@ -22,4 +22,4 @@ let data = {
     })
 };
 
-export default data;
+export default fixtures;
