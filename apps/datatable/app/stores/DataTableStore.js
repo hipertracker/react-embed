@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import Reflux from 'reflux'
 import DataTableActions from 'es6!../actions/DataTableActions'
 
@@ -19,6 +20,13 @@ export default Reflux.createStore({
                 order = 'asc';
                 break;
         }
-        this.trigger({resort: _.merge(data, {order: order})});
+        this.trigger({sortedColumn: _.merge(data, {order: order})});
+    },
+    onFilterSuccess(data) {
+        const {api, value} = data.filter;
+        const rows = _.filter(data.loaded.rows, (row) =>
+            row[api].toString().toLowerCase().search(value.toLowerCase()) !== -1
+        );
+        this.trigger({filtered: rows});
     }
 });
