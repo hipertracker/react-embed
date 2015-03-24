@@ -6,7 +6,7 @@ export default Reflux.createStore({
     onLoadDataSuccess(data) {
         this.trigger(data);
     },
-    onResortSuccess(data) {
+    onResort(data) {
         let order;
         switch (data.order) {
             case null:
