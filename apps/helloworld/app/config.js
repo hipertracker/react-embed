@@ -1,1 +1,1 @@
-//export const Amplify = window.parent.Amplify;
+export const Amplify = window.parent.Amplify;
