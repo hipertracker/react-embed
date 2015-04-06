@@ -1,6 +1,13 @@
-var require = {
+({
     waitSeconds: 200,
     baseUrl: './',
+    name: 'es6!app/boot',
+    out: 'optimized.js',
+    optimize: 'none',
+    exclude: ['babel'],
+    pragmasOnSave: {
+        excludeBabel: true
+    },
     paths: {
         babel: 'vendor/requirejs_babel/babel.min',
         babel_polyfill: 'vendor/requirejs_babel/polyfill.min',
@@ -29,5 +36,5 @@ var require = {
             deps: ['jquery']
         }
     }
-};
+})
 

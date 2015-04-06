@@ -4,7 +4,8 @@
     "jest-cli": "*"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "optimize": "r.js -o build.config.js"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
@@ -19,8 +20,6 @@
     ]
   },
   "dependencies": {
-    "classnames": "^1.2.0",
-    "react": "^0.13.1",
     "requirejs": "^2.1.17"
   }
 }

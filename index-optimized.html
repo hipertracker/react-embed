@@ -9,7 +9,7 @@
 </head>
 <body style="padding-left: 20px">
 <h1>React Embed</h1>
-
+Run <code>npm run optimize</code>
 <hr>
 
 <h2>External, legacy code:</h2>
@@ -36,7 +36,6 @@
 
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <script src="vendor/amplify/lib/amplify.min.js"></script>
-
 <script>
     window.Amplify = amplify;
     window.Amplify.subscribe('MessageFromCommunicator', function (data) {
@@ -45,9 +44,8 @@
         })
     });
 </script>
-
-<script src="./requirejs.config.js"></script>
-<script data-main="es6!app/boot" src="./vendor/requirejs/require.js"></script>
-
+<script src="vendor/requirejs_babel/babel.min.js"></script>
+<script src="vendor/requirejs_babel/polyfill.min.js"></script>
+<script data-main="optimized.js" src="vendor/requirejs/require.js"></script>
 </body>
 </html>
