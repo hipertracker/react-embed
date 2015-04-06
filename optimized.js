@@ -22214,8 +22214,9 @@ define('es6!app/components/SimpleDataTable',['exports', 'module', 'lodash', 'rea
     module.exports = SimpleDataTable;
 });
 
-define(['exports', 'react', 'es6!app/components/HelloWorld', 'es6!app/components/communicator/App', 'es6!app/components/SimpleDataTable'], function (exports, _react, _es6AppComponentsHelloWorld, _es6AppComponentsCommunicatorApp, _es6AppComponentsSimpleDataTable) {
+define('es6!app/boot',['exports', 'react', 'es6!app/components/HelloWorld', 'es6!app/components/communicator/App', 'es6!app/components/SimpleDataTable'], function (exports, _react, _es6AppComponentsHelloWorld, _es6AppComponentsCommunicatorApp, _es6AppComponentsSimpleDataTable) {
     'use strict';
+
     var _interopRequire = function (obj) { return obj && obj.__esModule ? obj['default'] : obj; };
 
     var _React = _interopRequire(_react);
@@ -22235,4 +22236,3 @@ define(['exports', 'react', 'es6!app/components/HelloWorld', 'es6!app/components
     mount(_Messenger, document.getElementById('Messenger'));
     mount(_SimpleDataTable, document.getElementById('SimpleDataTable'));
 });
-
