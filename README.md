@@ -1,3 +1,3 @@
-# react-iframe
+# react-embed
 
-Experiments with embeding React full SPAs through iframes.
+Experiments with embeding React to any legacy code.
