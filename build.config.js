@@ -3,7 +3,7 @@
     baseUrl: './',
     name: 'es6!app/boot',
     out: 'optimized.js',
-    //optimize: 'none',
+    optimize: 'none',
     exclude: ['amplify', 'babel', 'jquery'],
     pragmasOnSave: {
         excludeBabel: true

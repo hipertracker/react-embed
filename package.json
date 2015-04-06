@@ -5,7 +5,8 @@
   },
   "scripts": {
     "test": "jest",
-    "optimize": "r.js -o build.config.js"
+    "optimize": "r.js -o build.config.js",
+    "optimize:hash": "npm run optimize && cat optimized.js | hashmark -l 8 'optimized.{hash}.js'"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
@@ -20,6 +21,8 @@
     ]
   },
   "dependencies": {
-    "requirejs": "^2.1.17"
+    "hashmark": "^2.0.1",
+    "requirejs": "^2.1.17",
+    "rimraf": "^2.3.2"
   }
 }
