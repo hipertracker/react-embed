@@ -9,4 +9,13 @@ npm install
 bower install
 ```
 
+## run
+```
+npm install -g http-server
+http-server -p 3000
+```
+
+```
+open http://localhost:3000
+```
 
