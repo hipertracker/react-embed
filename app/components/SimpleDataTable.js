@@ -3,22 +3,21 @@ import React from 'react'
 import Reflux from 'reflux'
 import Immutable from 'immutable'
 import 'classnames'
-
-import UI from 'react-bootstrap'
+import Bootstrap from 'bootstrap'
 
 const T = React.PropTypes;
 
-const {Table} = UI;
+const {Table} = Bootstrap;
 
-import DataTableActions from 'es6!../actions/DataTableActions'
-import DataTableStore from 'es6!../stores/DataTableStore'
+import SimpleDataTableActions from 'es6!../actions/SimpleDataTableActions'
+import SimpleDataTableStore from 'es6!../stores/SimpleDataTableStore'
 
 const Th = React.createClass({
     getDefaultProps() {
         return {order: null};
     },
     resort() {
-        DataTableActions.resort(this.props);
+        SimpleDataTableActions.resort(this.props);
     },
     render() {
         let classes = classNames(
@@ -45,7 +44,7 @@ const Filter = React.createClass({
     },
     handleChange(event) {
         this.setState({value: event.target.value});
-        DataTableActions.filter({api: this.props.api, value: event.target.value})
+        SimpleDataTableActions.filter({api: this.props.api, value: event.target.value})
     },
     render() {
         return <input ref="filterInput" type="text" className="form-control input-sm"
@@ -95,8 +94,7 @@ const TBody = React.createClass({
             <tbody>
             {this.props.rows.map((row, key) =>
                     <tr key={key}>
-                        {names.map((name, key2) => <td key={key2}>{row[name]}</td>
-                        )}
+                        {names.map((name, key2) => <td key={key2}>{row[name]}</td>)}
                     </tr>
             )}
             </tbody>
@@ -104,43 +102,43 @@ const TBody = React.createClass({
     }
 });
 
-const Datatable = React.createClass({
-        mixins: [Reflux.listenTo(DataTableStore, 'storeChanged')],
-        getInitialState() {
-            return {columns: null, rows: null, sortedColumn: null}
-        },
-        componentWillMount() {
-            DataTableActions.loadData();
-        },
-        storeChanged(data) {
-            if (_.has(data, 'loaded')) {
-                let item = data.loaded;
-                this.setState({columns: item.columns, rows: item.rows});
-            }
-            if (_.has(data, 'sortedColumn')) {
-                let item = data.sortedColumn;
-                this.setState({
-                    sortedColumn: item,
-                    rows: _.sortByOrder(this.state.rows, [item.api], [item.order === 'asc'])
-                });
-            }
-            if (_.has(data, 'filtered')) {
-                let rows = data.filtered;
-                this.setState({rows: rows, sortedColumn: null});
-            }
-        },
-        render() {
-            if (!this.state.columns) return <span/>;
-            return (
-                <Table striped bordered condensed hover>
-                    <THead sortedColumn={this.state.sortedColumn || {}}
-                           columns={this.state.columns}/>
-                    <TBody columns={this.state.columns}
-                           rows={this.state.rows}/>
-                </Table>
-            );
+const SimpleDataTable = React.createClass({
+    mixins: [Reflux.listenTo(SimpleDataTableStore, 'storeChanged')],
+    getInitialState() {
+        return {columns: null, rows: null, sortedColumn: null}
+    },
+    componentWillMount() {
+        SimpleDataTableActions.loadData();
+    },
+    storeChanged(data) {
+        if (_.has(data, 'loaded')) {
+            let item = data.loaded;
+            this.setState({columns: item.columns, rows: item.rows});
         }
-    })
-    ;
+        if (_.has(data, 'sortedColumn')) {
+            let item = data.sortedColumn;
+            this.setState({
+                sortedColumn: item,
+                rows: _.sortByOrder(this.state.rows, [item.api], [item.order === 'asc'])
+            });
+        }
+        if (_.has(data, 'filtered')) {
+            let rows = data.filtered;
+            this.setState({rows: rows, sortedColumn: null});
+        }
+    },
+    render() {
+        if (!this.state.columns) return <span/>;
+        return (
+            <Table striped bordered condensed hover>
+                <THead sortedColumn={this.state.sortedColumn || {}}
+                       columns={this.state.columns}/>
+                <TBody columns={this.state.columns}
+                       rows={this.state.rows}/>
+            </Table>
+        );
+    }
+});
 
-export default Datatable;
+
+export default SimpleDataTable

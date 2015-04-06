@@ -1,7 +1,6 @@
 import React from 'react'
-import {Amplify} from 'es6!app/config'
 
-const Messanger = React.createClass({
+const Messenger = React.createClass({
     mixins: [React.addons.LinkedStateMixin],
     propTypes: {
         title: React.PropTypes.string.isRequired,
@@ -18,17 +17,19 @@ const Messanger = React.createClass({
         this.setState({message: null, sent: null});
     },
     sendMessage(e) {
+        // example of communication with decoupled other part of web app
         e.preventDefault();
-        Amplify.publish('react-diamond', this.state.message);
+        window.Amplify.publish('MessageFromCommunicator', this.state.message);
         this.setState({sent: true});
     },
     render() {
         const notification = this.state.sent ? <span className="alert">Message sent</span> : <span/>;
-           return (
-               <section>
+        return (
+            <section>
                 <form>
                     <fieldset>
                         <label>{this.props.title}</label>
+                        &nbsp;
                         <input type="text"
                                style={{ width: 118}}
                                maxLength={14}
@@ -52,4 +53,4 @@ const Messanger = React.createClass({
     }
 });
 
-export default Messanger;
+export default Messenger;
