@@ -7,7 +7,6 @@ var require = {
         es6: 'vendor/requirejs_babel/es6',
 
         react: 'vendor/react/react-with-addons',
-        React: 'vendor/react/react', // for fixed-data-table otherwise replace React -> react
         classnames: 'vendor/classnames/index',
         reflux: 'vendor/reflux/dist/reflux.min',
         'fixed-data-table': 'vendor/fixed_data_table/dist/fixed-data-table',

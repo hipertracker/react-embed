@@ -23,7 +23,7 @@ export const SimpleDataTableFixtures = {
 };
 
 export const DataTableFixtures = {
-    rows: _.range(100).map(() => {
+    rows: _.range(10000).map(() => {
         let i = Math.round(Math.random(10000) * 10000);
         return [
             `a${i}`,

@@ -35,11 +35,11 @@ const DataTable = React.createClass({
             <section>
                 <h1>DataTable</h1>
                 <Table
-                    rowHeight={50}
+                    rowHeight={40}
                     rowGetter={rowGetter}
                     rowsCount={this.state.rows.length}
-                    width={5000}
-                    height={5000}
+                    width={500}
+                    height={500}
                     headerHeight={50}>
                     <Column
                         label="Col 1"
