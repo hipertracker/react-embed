@@ -1,3 +1,3 @@
 # react-embed
 
-Experiments with embeding React to any legacy code.
+Example of embedding React into external, decoupled code.  The code uses only a browser and it uses ES6 modules.
