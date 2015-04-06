@@ -1,6 +1,6 @@
 import React from 'react'
 import HelloWorld from 'es6!app/components/HelloWorld'
-import Messenger from 'es6!app/components/comunicator/App'
+import Messenger from 'es6!app/components/communicator/App'
 import SimpleDataTable from 'es6!app/components/SimpleDataTable'
 
 var mount = function (componentPath, placeholder) {
