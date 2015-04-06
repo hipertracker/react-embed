@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import Reflux from 'reflux'
-import DataTableActions from 'es6!../actions/DataTableActions'
+import DataTableActions from 'es6!app/actions/SimpleDataTableActions'
 
 export default Reflux.createStore({
     listenables: [DataTableActions],

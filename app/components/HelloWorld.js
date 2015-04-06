@@ -1,7 +1,6 @@
 import React from 'react'
-import {Amplify} from 'es6!app/config'
 
-const App = React.createClass({
+class HelloWorld extends React.Component {
     render() {
         return (
             <section>
@@ -9,6 +8,6 @@ const App = React.createClass({
             </section>
         );
     }
-});
+}
 
-export default App;
+export default HelloWorld

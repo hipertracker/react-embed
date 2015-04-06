@@ -1,9 +1,9 @@
 {
-  "name": "react-diamond",
-  "version": "0.0.1",
+  "name": "react-embed",
+  "version": "0.1.0",
   "main": "index.js",
   "authors": [
-    "Jaroslaw Zabiello"
+    "Jaroslaw Zabiello <hipertracker@gmail.com>"
   ],
   "license": "MIT",
   "private": true,
@@ -13,22 +13,19 @@
     "bower_components",
     "vendor/",
     "test",
-    "tests"
+    "tests",
+    "__tests__"
   ],
   "dependencies": {
-    "react": "*",
+    "requirejs": "~2.1.17",
     "requirejs_babel": "hipertracker/requirejs-babel",
-    "amplify": "~1.1.2",
-    "reflux": "*",
+    "react": "~0.13.1",
+    "classnames": "~1.1.4",
+    "react_bootstrap": "react-bootstrap#~0.20.1",
+    "lodash": "~3.6.0",
+    "immutable": "~3.7.1",
     "jquery": "~2.1.3",
-    "requirejs": "~2.1.16",
-    "lodash": "~3.5.0",
-    "immutable": "~3.6.4",
-    "superagent": "~1.1.0",
-    "react-bootstrap": "~0.17.0",
-    "classnames": "~1.1.4"
-  },
-  "resolutions": {
-    "jquery": "~2.1.3"
+    "amplify": "~1.1.2",
+    "reflux": "~0.2.7"
   }
 }
