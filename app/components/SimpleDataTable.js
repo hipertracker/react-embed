@@ -3,14 +3,14 @@ import React from 'react'
 import Reflux from 'reflux'
 import Immutable from 'immutable'
 import 'classnames'
-import Bootstrap from 'bootstrap'
+import ReactBootstrap from 'react-bootstrap'
 
 const T = React.PropTypes;
 
-const {Table} = Bootstrap;
+const {Table} = ReactBootstrap;
 
-import SimpleDataTableActions from 'es6!../actions/SimpleDataTableActions'
-import SimpleDataTableStore from 'es6!../stores/SimpleDataTableStore'
+import SimpleDataTableActions from 'es6!app/actions/SimpleDataTableActions'
+import SimpleDataTableStore from 'es6!app/stores/SimpleDataTableStore'
 
 const Th = React.createClass({
     getDefaultProps() {

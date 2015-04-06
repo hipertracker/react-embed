@@ -1,5 +1,5 @@
 import Reflux from 'reflux'
-import fixtures from 'es6!./fixtures'
+import {SimpleDataTableFixtures as fixtures} from 'es6!./fixtures'
 
 const SimpleDataTableActions = Reflux.createActions([
     'loadData',

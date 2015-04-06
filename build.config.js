@@ -21,7 +21,8 @@
         amplify: 'vendor/amplify/lib/amplify.min',
         lodash: 'vendor/lodash/lodash.min',
         immutable: 'vendor/immutable/dist/immutable.min',
-        bootstrap: 'vendor/react_bootstrap/react-bootstrap.min',
+        'react-bootstrap': 'vendor/react_bootstrap/react-bootstrap.min',
+        'fixed-data-table': 'vendor/fixed_data_table/dist/fixed-data-table.min',
 
         app: 'app'
     },
