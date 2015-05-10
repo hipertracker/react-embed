@@ -21,8 +21,8 @@
     ]
   },
   "dependencies": {
-    "hashmark": "^2.0.1",
+    "hashmark": "^3.0.0",
     "requirejs": "^2.1.17",
-    "rimraf": "^2.3.2"
+    "rimraf": "^2.3.3"
   }
 }
